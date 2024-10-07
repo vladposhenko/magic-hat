@@ -20,7 +20,7 @@ import {
   incrementTotalAttempts,
 } from "@/store/appReducer";
 import { Houses } from "@/constants/Houses";
-import emptyImage from "../../../assets/images/emptyImage.png";
+import emptyImage from "../../assets/images/emptyImage.png";
 import Counters from "@/components/common/Counters";
 
 const HomeScreen = () => {

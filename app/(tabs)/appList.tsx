@@ -33,7 +33,7 @@ const AppList = () => {
 
   const handleReloadCharacter = (character: ICharacterItem) => {
     dispatch(setCurrentCharacter(character));
-    router.push("/home");
+    router.push("/");
   };
 
   return (

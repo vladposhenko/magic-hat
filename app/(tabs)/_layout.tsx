@@ -10,7 +10,6 @@ import { getCharacters } from '@/store/appActions';
 
 const TabLayout = () => {
   const dispatch = useAppDispatch()
-
   const handleResetAttempts = () => {
     dispatch(resetAttempts())
     dispatch(getCharacters())
@@ -23,7 +22,7 @@ const TabLayout = () => {
         headerShown: false,
       }}>
       <Tabs.Screen
-        name="home"
+        name="index"
         options={{
           title: 'Home',
           headerTitle: 'Home Screen',
@@ -39,7 +38,7 @@ const TabLayout = () => {
         }}
       />
       <Tabs.Screen
-        name="list"
+        name="appList"
         options={{
           title: 'List',
           headerTitle: 'List Screen',
