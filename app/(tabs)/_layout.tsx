@@ -2,36 +2,59 @@ import { Tabs } from 'expo-router';
 import React from 'react';
 
 import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
+import { Text, TouchableOpacity } from 'react-native';
+import { useAppDispatch } from '@/hooks/redux';
+import { resetAttempts } from '@/store/appReducer';
+import { getCharacters } from '@/store/appActions';
 
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+
+const TabLayout = () => {
+  const dispatch = useAppDispatch()
+
+  const handleResetAttempts = () => {
+    dispatch(resetAttempts())
+    dispatch(getCharacters())
+  }
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
+        tabBarActiveTintColor: 'black',
         headerShown: false,
       }}>
       <Tabs.Screen
-        name="index"
+        name="home"
         options={{
           title: 'Home',
+          headerTitle: 'Home Screen',
+          headerShown: true,
+          headerRight: () => (
+            <TouchableOpacity onPress={handleResetAttempts}>
+              <Text style={{ paddingRight: 15 }}>Reset</Text>
+            </TouchableOpacity> 
+          ),
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-          ),
+          ), 
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="list"
         options={{
-          title: 'Explore',
+          title: 'List',
+          headerTitle: 'List Screen',
+          headerShown: true,
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+            <TabBarIcon name={focused ? 'list' : 'list-outline'} color={color} />
+          ),
+          headerRight: () => (
+            <TouchableOpacity onPress={handleResetAttempts}>
+              <Text style={{ paddingRight: 15 }}>Reset</Text>
+            </TouchableOpacity> 
           ),
         }}
       />
     </Tabs>
   );
 }
+export default TabLayout
